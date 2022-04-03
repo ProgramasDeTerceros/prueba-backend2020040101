@@ -4,7 +4,6 @@ namespace backendEscuela.Models
 	{
 		public int Id { get; set; }
 		private bool _valid = true;
-		public bool valid { get => _valid; }
 		private string _nombre;
 		public string Nombre
 		{
@@ -71,13 +70,17 @@ namespace backendEscuela.Models
 			get => _casa;
 			set
 			{
-				if (value.Length > 20)
+				if (!value.Equals("Gryffindor") && !value.Equals("Hufflepuff") && !value.Equals("Ravenclaw") && !value.Equals("Slytherin"))
 				{
 					_valid = false;
 					return;
 				}
 				_casa = value;
 			}
+		}
+		public bool IsValid()
+		{
+			return _valid;
 		}
 	}
 }

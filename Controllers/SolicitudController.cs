@@ -57,6 +57,10 @@ namespace backendEscuela.Controllers
 		[HttpPost]
 		public void Post([FromBody] Solicitud solicitud)
 		{
+			if (!solicitud.IsValid())
+			{
+				return;
+			}
 			Solicitud[] solicitudes = GetList();
 			Array.Resize(ref solicitudes, solicitudes.Length + 1);
 			solicitudes[solicitudes.GetUpperBound(0)] = solicitud;
@@ -68,7 +72,10 @@ namespace backendEscuela.Controllers
 		[HttpPut("{id}")]
 		public void Put(int id, [FromBody] Solicitud solicitud)
 		{
-			Console.WriteLine("llega put");
+			if (!solicitud.IsValid())
+			{
+				return;
+			}
 			Solicitud[] solicitudes = GetList();
 			var index = Array.FindIndex(solicitudes, row => row.Id == id);
 			solicitudes[index] = solicitud;
@@ -80,8 +87,10 @@ namespace backendEscuela.Controllers
 		public void Delete(int id)
 		{
 			Solicitud[] solicitudes = GetList();
+			/*
 			var index = Array.FindIndex(solicitudes, row => row.Id == id);
-			solicitudes[index] = null;
+			solicitudes[index] = null;*/
+			solicitudes = solicitudes.Where(e => e.Id != id).ToArray();
 			SaveList(solicitudes);
 		}
 	}
