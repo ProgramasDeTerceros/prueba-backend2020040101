@@ -1,4 +1,9 @@
 ## REST API
+
+### Ejecutar
+
+`dotnet run`
+
 ### PORT	
 
 `http -> 5000`
