@@ -2,6 +2,12 @@ namespace backendEscuela.Models
 {
 	public class Solicitud
 	{
+		private static int IdAuto = 0;
+		public Solicitud()
+		{
+			Id = ++IdAuto;
+		}
+
 		public int Id { get; set; }
 		private bool _valid = true;
 		private string _nombre;
@@ -80,7 +86,8 @@ namespace backendEscuela.Models
 		}
 		public bool IsValid()
 		{
-			return _valid;
+			return _valid && Id <= IdAuto && _casa != null; 
 		}
+
 	}
 }

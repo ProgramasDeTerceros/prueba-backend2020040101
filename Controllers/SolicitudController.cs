@@ -87,9 +87,6 @@ namespace backendEscuela.Controllers
 		public void Delete(int id)
 		{
 			Solicitud[] solicitudes = GetList();
-			/*
-			var index = Array.FindIndex(solicitudes, row => row.Id == id);
-			solicitudes[index] = null;*/
 			solicitudes = solicitudes.Where(e => e.Id != id).ToArray();
 			SaveList(solicitudes);
 		}
